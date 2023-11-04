@@ -23,8 +23,13 @@ type CategoryProps = {
 const Category: FC<CategoryProps> = ({ category, deleteCategory }) => {
   const dragControls = useDragControls();
 
-  const content = (
-    <>
+  return (
+    <Reorder.Item
+      className='flex h-[50px] w-full items-center justify-between gap-5 rounded-sm border-2 border-category-border bg-category-bg px-5'
+      id={category.id}
+      value={category}
+      dragListener={false}
+      dragControls={category.type !== 'other' ? dragControls : undefined}>
       {category.type !== 'input' ? (
         <p
           className={cn('w-full text-[14px] font-medium', {
@@ -53,24 +58,6 @@ const Category: FC<CategoryProps> = ({ category, deleteCategory }) => {
           </>
         )}
       </div>
-    </>
-  );
-
-  if (category.type === 'other')
-    return (
-      <li className='flex h-[50px] w-full items-center justify-between gap-5 rounded-sm border-2 border-category-border bg-category-bg px-5'>
-        {content}
-      </li>
-    );
-
-  return (
-    <Reorder.Item
-      className='flex h-[50px] w-full items-center justify-between gap-5 rounded-sm border-2 border-category-border bg-category-bg px-5'
-      id={category.id}
-      value={category}
-      dragListener={false}
-      dragControls={dragControls}>
-      {content}
     </Reorder.Item>
   );
 };

@@ -26,7 +26,10 @@ const Page: FC<PageProps> = ({}) => {
   };
 
   const handleReorder = (reorderedCategories: CategoryType[]) => {
-    setCategories([...reorderedCategories, otherCategory]);
+    setCategories([
+      ...reorderedCategories.filter((category) => category.id !== 'other'),
+      otherCategory,
+    ]);
   };
 
   const handleCreateCategoryClick = () => {
