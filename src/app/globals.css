@@ -21,7 +21,10 @@
     --destructive: 0 62% 30%;
     --destructive-foreground: 0 0% 10%;
     --border: 240 13% 60%;
-    --header-border: 229, 15%, 23%;
+    --header-border: 229 15% 23%;
+    --category-bg: 234 12% 16%;
+    --category-border: 233 15% 23%;
+    --category-title-muted: 0 0% 41%;
     --input: 229, 15%, 23%;
     --ring: 127 56% 60%;
     --radius: 0.5rem;
@@ -45,7 +48,10 @@
     --destructive: 0 62% 30%;
     --destructive-foreground: 0 0% 10%;
     --border: 240 13% 60%;
-    --header-border: 229, 15%, 23%;
+    --header-border: 229 15% 23%;
+    --category-bg: 234 12% 16%;
+    --category-border: 233 15% 23%;
+    --category-title-muted: 0 0% 41%;
     --input: 229, 15%, 23%;
     --ring: 127 56% 60%;
   }

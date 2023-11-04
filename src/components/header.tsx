@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
 import { Icons } from '@/components/icons';
+
 import SearchField from '@/components/search-field';
 
 type HeaderProps = {};
@@ -8,7 +9,7 @@ type HeaderProps = {};
 const Header: FC<HeaderProps> = ({}) => {
   return (
     <header className='border-header-border flex w-full justify-center border-b sm:h-[72px]'>
-      <div className='flex max-w-7xl flex-1 flex-col items-center justify-between gap-5 px-5 py-5 sm:flex-row'>
+      <div className='flex max-w-[1298px] flex-1 flex-col items-center justify-between gap-5 px-5 py-5 sm:flex-row'>
         <div className='flex cursor-pointer items-center gap-[10px]'>
           <Icons.logo />
           <span className='select-none text-[32px] font-bold leading-[28px]'>

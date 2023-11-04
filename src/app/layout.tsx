@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body>
-        <main className='flex h-screen max-h-screen flex-col items-center antialiased'>
+        <main className='flex h-screen max-h-screen flex-col items-center gap-10 antialiased'>
           <Header />
           {children}
         </main>

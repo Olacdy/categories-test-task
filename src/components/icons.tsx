@@ -1,3 +1,4 @@
+import { DragControls } from 'framer-motion';
 import { type LucideIcon, type LucideProps } from 'lucide-react';
 
 export type Icon = LucideIcon;
@@ -140,6 +141,25 @@ export const Icons = {
           <path fill='#fff' d='M0 0h20v20H0z' />
         </clipPath>
       </defs>
+    </svg>
+  ),
+  dragAndDrop: ({
+    dragControls,
+    ...props
+  }: LucideProps & { dragControls: DragControls }) => (
+    <svg
+      width='8'
+      height='14'
+      viewBox='0 0 8 14'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      onPointerDown={(event) => dragControls.start(event)}
+      {...props}>
+      <path
+        d='M1.094.428a1.397 1.397 0 0 1 1.401 2.22A1.397 1.397 0 0 1 .038 1.462 1.402 1.402 0 0 1 1.094.428ZM6.312.426a1.396 1.396 0 1 1 .348 2.76A1.397 1.397 0 0 1 5.231 1.52c.1-.537.544-.987 1.08-1.095ZM1.256 5.614a1.396 1.396 0 1 1 .275 2.778 1.396 1.396 0 0 1-.275-2.778Zm5.219-.001A1.397 1.397 0 0 1 7.996 6.9a1.397 1.397 0 0 1-1.468 1.495 1.396 1.396 0 0 1-.053-2.782ZM1.127 10.84a1.397 1.397 0 1 1 .443 2.753 1.397 1.397 0 0 1-1.535-1.698 1.401 1.401 0 0 1 1.092-1.056Zm5.217-.003a1.396 1.396 0 1 1 .513 2.743 1.396 1.396 0 0 1-.513-2.743Z'
+        opacity='.5'
+        fill='#fff'
+      />
     </svg>
   ),
 };
