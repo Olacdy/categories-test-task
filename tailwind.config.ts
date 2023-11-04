@@ -20,7 +20,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        satoshi: ['var(--font-satoshi)', ...fontFamily.sans],
+        sans: ['Satoshi', ...fontFamily.sans],
       },
       colors: {
         border: 'hsl(var(--border))',

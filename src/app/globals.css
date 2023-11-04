@@ -56,4 +56,22 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  @font-face {
+    font-family: 'Satoshi';
+    font-weight: 400;
+    src: url(/categories-test-task/fonts/Satoshi-Regular.ttf);
+  }
+
+  @font-face {
+    font-family: 'Satoshi';
+    font-weight: 500;
+    src: url(/categories-test-task/fonts/Satoshi-Medium.ttf);
+  }
+
+  @font-face {
+    font-family: 'Satoshi';
+    font-weight: 700;
+    src: url(/categories-test-task/fonts/Satoshi-Bold.ttf);
+  }
 }

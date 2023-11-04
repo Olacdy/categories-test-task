@@ -1,32 +1,14 @@
 import type { Metadata } from 'next';
 
-import localFont from 'next/font/local';
-
 import { Toaster } from 'sonner';
 
 import { isMobile } from 'react-device-detect';
 
 import Favicon from '../../public/favicon.ico';
 
-import './globals.css';
+import Header from '@/components/header';
 
-const satoshi = localFont({
-  src: [
-    {
-      path: '../../public/fonts/Satoshi-Regular.ttf',
-      weight: '400',
-    },
-    {
-      path: '../../public/fonts/Satoshi-Medium.ttf',
-      weight: '500',
-    },
-    {
-      path: '../../public/fonts/Satoshi-Bold.ttf',
-      weight: '700',
-    },
-  ],
-  variable: '--font-satoshi',
-});
+import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Categories',
@@ -41,8 +23,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={satoshi.variable}>
-        <main className='font-satoshi flex h-screen max-h-screen flex-col items-center'>
+      <body>
+        <main className='flex h-screen max-h-screen flex-col items-center antialiased'>
+          <Header />
           {children}
         </main>
         <Toaster
