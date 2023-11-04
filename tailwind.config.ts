@@ -31,6 +31,7 @@ module.exports = {
         success: 'hsl(var(--success))',
         overlay: 'hsl(var(--overlay))',
         input: 'hsl(var(--input))',
+        switch: 'hsl(var(--switch))',
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',

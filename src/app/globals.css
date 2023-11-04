@@ -27,6 +27,7 @@
     --category-border: 233 15% 23%;
     --category-title-muted: 0 0% 41%;
     --input: 229, 15%, 23%;
+    --switch: 235 8% 26%;
     --ring: 260 99% 65%;
     --success: 127 56% 60%;
     --radius: 0.5rem;
@@ -56,6 +57,7 @@
     --category-border: 233 15% 23%;
     --category-title-muted: 0 0% 41%;
     --input: 229, 15%, 23%;
+    --switch: 235 8% 26%;
     --ring: 260 99% 65%;
     --success: 127 56% 60%;
   }

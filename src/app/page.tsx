@@ -19,10 +19,16 @@ const Page: FC<PageProps> = ({}) => {
     otherCategory,
   ]);
 
-  const deleteCategory = (id: string) => {
-    const newCategories = categories.filter((category) => category.id !== id);
+  const switchCategory = (id: string) => {
+    setCategories((prev) =>
+      prev.map((category) =>
+        category.id === id ? { ...category, isOn: !category.isOn } : category
+      )
+    );
+  };
 
-    setCategories(newCategories);
+  const deleteCategory = (id: string) => {
+    setCategories((prev) => prev.filter((category) => category.id !== id));
   };
 
   const handleReorder = (reorderedCategories: CategoryType[]) => {
@@ -40,11 +46,12 @@ const Page: FC<PageProps> = ({}) => {
   };
 
   return (
-    <section className='flex w-full max-w-[638px] flex-1 flex-col items-center gap-[12px]'>
+    <section className='flex w-full max-w-[638px] flex-1 flex-col items-center gap-[12px] px-5'>
       <CreateCategoryButton handleClick={handleCreateCategoryClick} />
       <Categories
         categories={categories}
         handleReorder={handleReorder}
+        switchCategory={switchCategory}
         deleteCategory={deleteCategory}
       />
     </section>

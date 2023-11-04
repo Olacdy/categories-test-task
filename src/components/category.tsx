@@ -5,7 +5,6 @@ import { FC } from 'react';
 import { Reorder, useDragControls } from 'framer-motion';
 
 import { Input } from '@/components/ui/input';
-import { Switch } from '@/components/ui/switch';
 
 import { Icons } from '@/components/icons';
 
@@ -13,14 +12,20 @@ import DeleteCategoryDialog from '@/components/delete-category-dialog';
 
 import { cn } from '@/lib/utils';
 
+import CategorySwitch from '@/components/category-switch';
 import { CategoryType } from '@/types/category';
 
 type CategoryProps = {
   category: CategoryType;
+  switchCategory: (id: string) => void;
   deleteCategory: (id: string) => void;
 };
 
-const Category: FC<CategoryProps> = ({ category, deleteCategory }) => {
+const Category: FC<CategoryProps> = ({
+  category,
+  switchCategory,
+  deleteCategory,
+}) => {
   const dragControls = useDragControls();
 
   return (
@@ -45,7 +50,10 @@ const Category: FC<CategoryProps> = ({ category, deleteCategory }) => {
       )}
 
       <div className='flex w-full max-w-[121px] items-center justify-between'>
-        <Switch checked={category.isOn} onCheckedChange={() => {}} />
+        <CategorySwitch
+          checked={category.isOn}
+          onCheckedChange={() => switchCategory(category.id)}
+        />
         {category.type !== 'other' && (
           <>
             <DeleteCategoryDialog
