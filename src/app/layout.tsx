@@ -6,6 +6,8 @@ import { Toaster } from 'sonner';
 
 import { isMobile } from 'react-device-detect';
 
+import Favicon from '../../public/favicon.ico';
+
 import './globals.css';
 
 const satoshi = localFont({
@@ -29,6 +31,7 @@ const satoshi = localFont({
 export const metadata: Metadata = {
   title: 'Categories',
   description: 'Categories test task',
+  icons: [{ rel: 'icon', url: Favicon.src }],
 };
 
 export default function RootLayout({
