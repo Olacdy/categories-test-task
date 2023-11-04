@@ -2,6 +2,10 @@ import type { Metadata } from 'next';
 
 import localFont from 'next/font/local';
 
+import { Toaster } from 'sonner';
+
+import { isMobile } from 'react-device-detect';
+
 import './globals.css';
 
 const satoshi = localFont({
@@ -38,6 +42,10 @@ export default function RootLayout({
         <main className='font-satoshi flex h-screen max-h-screen flex-col items-center'>
           {children}
         </main>
+        <Toaster
+          richColors
+          position={isMobile ? 'top-center' : 'bottom-right'}
+        />
       </body>
     </html>
   );
