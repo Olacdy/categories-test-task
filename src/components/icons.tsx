@@ -11,7 +11,7 @@ export const Icons = {
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
       {...props}>
-      <g clip-path='url(#a)'>
+      <g clipPath='url(#a)'>
         <circle cx='22.189' cy='19.02' fill='url(#b)' r='10.034' />
         <circle cx='18.844' cy='14.56' fill='#fff' r='2.23' />
         <circle cx='45.603' cy='19.02' fill='url(#c)' r='10.034' />
@@ -51,8 +51,8 @@ export const Icons = {
           x2='22.189'
           y2='29.054'
           gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#6613D1' />
-          <stop offset='1' stop-color='#CD57EE' />
+          <stop stopColor='#6613D1' />
+          <stop offset='1' stopColor='#CD57EE' />
         </linearGradient>
         <linearGradient
           id='c'
@@ -61,8 +61,8 @@ export const Icons = {
           x2='45.603'
           y2='29.054'
           gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#6613D1' />
-          <stop offset='1' stop-color='#CD57EE' />
+          <stop stopColor='#6613D1' />
+          <stop offset='1' stopColor='#CD57EE' />
         </linearGradient>
         <clipPath id='a'>
           <path fill='#fff' d='M0 0h78v30H0z' />
@@ -127,7 +127,7 @@ export const Icons = {
       xmlns='http://www.w3.org/2000/svg'
       {...props}>
       <g
-        clip-path='url(#a)'
+        clipPath='url(#a)'
         stroke='#fff'
         strokeWidth='1.7'
         strokeLinecap='round'
