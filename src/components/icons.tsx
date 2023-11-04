@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils';
 import { DragControls } from 'framer-motion';
 import { type LucideIcon, type LucideProps } from 'lucide-react';
 
@@ -112,10 +113,11 @@ export const Icons = {
       viewBox='0 0 26 26'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
+      className={cn('fill-[#9B9D9F]', props.className)}
       {...props}>
       <path
         d='M8.713 17.667c0 .736.64 1.333 1.429 1.333h5.714c.79 0 1.429-.597 1.429-1.333v-8H8.713v8Zm9.286-10h-2.5L14.785 7h-3.572l-.714.667h-2.5V9h10V7.667Z'
-        fill='#9B9D9F'
+        fill='current'
       />
     </svg>
   ),

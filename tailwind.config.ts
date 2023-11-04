@@ -28,6 +28,8 @@ module.exports = {
         'category-bg': 'hsl(var(--category-bg))',
         'category-border': 'hsl(var(--category-border))',
         'category-title-muted': 'hsl(var(--category-title-muted))',
+        success: 'hsl(var(--success))',
+        overlay: 'hsl(var(--overlay))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',

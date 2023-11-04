@@ -19,6 +19,12 @@ const Page: FC<PageProps> = ({}) => {
     otherCategory,
   ]);
 
+  const deleteCategory = (id: string) => {
+    const newCategories = categories.filter((category) => category.id !== id);
+
+    setCategories(newCategories);
+  };
+
   const handleReorder = (reorderedCategories: CategoryType[]) => {
     setCategories([...reorderedCategories, otherCategory]);
   };
@@ -33,7 +39,11 @@ const Page: FC<PageProps> = ({}) => {
   return (
     <section className='flex w-full max-w-[638px] flex-1 flex-col items-center gap-[12px]'>
       <CreateCategoryButton handleClick={handleCreateCategoryClick} />
-      <Categories categories={categories} handleReorder={handleReorder} />
+      <Categories
+        categories={categories}
+        handleReorder={handleReorder}
+        deleteCategory={deleteCategory}
+      />
     </section>
   );
 };

@@ -4,22 +4,23 @@ import { FC } from 'react';
 
 import { Reorder, useDragControls } from 'framer-motion';
 
-import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { Switch } from '@/components/ui/switch';
 
 import { Icons } from '@/components/icons';
 
-import { cn } from '@/lib/utils';
+import DeleteCategoryDialog from '@/components/delete-category-dialog';
 
-import { Input } from '@/components/ui/input';
+import { cn } from '@/lib/utils';
 
 import { CategoryType } from '@/types/category';
 
 type CategoryProps = {
   category: CategoryType;
+  deleteCategory: (id: string) => void;
 };
 
-const Category: FC<CategoryProps> = ({ category }) => {
+const Category: FC<CategoryProps> = ({ category, deleteCategory }) => {
   const dragControls = useDragControls();
 
   const content = (
@@ -42,9 +43,9 @@ const Category: FC<CategoryProps> = ({ category }) => {
         <Switch checked={category.isOn} onCheckedChange={() => {}} />
         {category.type !== 'other' && (
           <>
-            <Button size='icon' variant='ghost'>
-              <Icons.delete />
-            </Button>
+            <DeleteCategoryDialog
+              deleteCategory={() => deleteCategory(category.id)}
+            />
             <Icons.dragAndDrop
               className='h-6 w-6 cursor-grab p-1'
               dragControls={dragControls}
