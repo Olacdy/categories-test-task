@@ -29,28 +29,30 @@ const Categories: FC<CategoriesProps> = ({
 
   return (
     <>
-      <DragDropContext onDragEnd={onDragEnd}>
-        <StrictModeDroppable droppableId='categories'>
-          {(provided) => (
-            <ul
-              ref={provided.innerRef}
-              className='flex w-full flex-col gap-[12px]'
-              {...provided.droppableProps}>
-              {categoriesWithoutOther.map((category, index) => (
-                <Category
-                  key={category.id}
-                  index={index}
-                  category={category}
-                  handleTitleChange={handleTitleChange}
-                  switchCategory={switchCategory}
-                  deleteCategory={deleteCategory}
-                />
-              ))}
-              {provided.placeholder}
-            </ul>
-          )}
-        </StrictModeDroppable>
-      </DragDropContext>
+      {categoriesWithoutOther.length > 0 && (
+        <DragDropContext onDragEnd={onDragEnd}>
+          <StrictModeDroppable droppableId='categories'>
+            {(provided) => (
+              <ul
+                ref={provided.innerRef}
+                className='flex w-full flex-col gap-[12px]'
+                {...provided.droppableProps}>
+                {categoriesWithoutOther.map((category, index) => (
+                  <Category
+                    key={category.id}
+                    index={index}
+                    category={category}
+                    handleTitleChange={handleTitleChange}
+                    switchCategory={switchCategory}
+                    deleteCategory={deleteCategory}
+                  />
+                ))}
+                {provided.placeholder}
+              </ul>
+            )}
+          </StrictModeDroppable>
+        </DragDropContext>
+      )}
       <Category
         key={otherCategory.id}
         index={categories.length}
