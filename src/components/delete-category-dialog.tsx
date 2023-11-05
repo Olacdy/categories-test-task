@@ -1,10 +1,11 @@
 'use client';
 
-import { FC, useState } from 'react';
+import { FC } from 'react';
 
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -22,15 +23,12 @@ type DeleteCategoryDialogProps = {
 const DeleteCategoryDialog: FC<DeleteCategoryDialogProps> = ({
   deleteCategory,
 }) => {
-  const [open, setOpen] = useState<boolean>(false);
-
   const handleDelete = () => {
-    deleteCategory();
-    setOpen(false);
+    setTimeout(() => deleteCategory(), 100);
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog>
       <DialogTrigger asChild>
         <Button size='icon' variant='ghost' className='hover:bg-destructive'>
           <Icons.delete />
@@ -44,18 +42,21 @@ const DeleteCategoryDialog: FC<DeleteCategoryDialogProps> = ({
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className='w-full gap-4'>
-          <Button
-            onClick={handleDelete}
-            className='h-[58px] bg-gradient-to-r from-primary to-[#50BDFC] text-[16px] text-foreground'>
-            <Icons.delete className='h-8 w-8 fill-foreground' />
-            <span>Delete</span>
-          </Button>
-          <Button
-            onClick={() => setOpen(false)}
-            variant='ghost'
-            className='text-[16px] text-destructive hover:bg-transparent hover:text-destructive hover:underline'>
-            Cancel
-          </Button>
+          <DialogClose asChild>
+            <Button
+              onClick={handleDelete}
+              className='h-[58px] bg-gradient-to-r from-primary to-[#50BDFC] text-[16px] text-foreground'>
+              <Icons.delete className='h-8 w-8 fill-foreground' />
+              <span>Delete</span>
+            </Button>
+          </DialogClose>
+          <DialogClose asChild>
+            <Button
+              variant='ghost'
+              className='text-[16px] text-destructive hover:bg-transparent hover:text-destructive hover:underline'>
+              Cancel
+            </Button>
+          </DialogClose>
         </DialogFooter>
       </DialogContent>
     </Dialog>
