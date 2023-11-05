@@ -55,7 +55,7 @@ const Category: FC<CategoryProps> = ({
           value={category.title}
           onChange={handleInputChange}
           placeholder='Enter Category Name'
-          className='border-0 bg-transparent px-0 placeholder:text-category-title-muted focus-visible:ring-0 focus-visible:ring-offset-0'
+          className='border-0 bg-transparent px-0 placeholder:select-none placeholder:text-category-title-muted focus-visible:ring-0 focus-visible:ring-offset-0'
         />
       )}
 

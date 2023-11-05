@@ -32,7 +32,7 @@ const Page: FC = () => {
   const searchCategories = () => {
     return categories.filter((category) => {
       if (category.type === 'regular') {
-        return category.title.toLowerCase().includes(search);
+        return category.title.toLowerCase().includes(search.toLowerCase());
       }
 
       return category;
