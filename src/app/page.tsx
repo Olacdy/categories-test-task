@@ -32,6 +32,12 @@ const Page: FC = () => {
   };
 
   const handleReorder = (reorderedCategories: CategoryType[]) => {
+    const lastElement = reorderedCategories.at(-1)!;
+
+    if (lastElement.type !== 'other') {
+      return;
+    }
+
     updateCategories([
       ...reorderedCategories.filter((category) => category.id !== 'other'),
       otherCategory,
