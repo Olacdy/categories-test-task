@@ -88,7 +88,7 @@ const Page: FC = () => {
   };
 
   return (
-    <section className='flex w-full max-w-[638px] flex-1 flex-col items-center gap-[12px] px-5'>
+    <section className='flex w-full max-w-[638px] flex-1 flex-col items-center gap-[12px] px-5 pb-44'>
       <CreateCategoryButton handleClick={handleCreateCategoryClick} />
       <Categories
         categories={searchCategories()}
