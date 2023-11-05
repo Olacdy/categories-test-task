@@ -8,6 +8,8 @@
     --foreground: 0 0% 100%;
     --card: 240 13% 14%;
     --card-foreground: 0 0% 100%;
+    --apply-changes: 236 13% 21%;
+    --cancel-btn-border: 233 12% 29%;
     --popover: 240 13% 14%;
     --popover-foreground: 0 0% 100%;
     --overlay: 230 13% 9% / 0.9;
@@ -38,6 +40,8 @@
     --foreground: 0 0% 100%;
     --card: 240 13% 14%;
     --card-foreground: 0 0% 100%;
+    --apply-changes: 236 13% 21%;
+    --cancel-btn-border: 233 12% 29%;
     --popover: 240 13% 14%;
     --popover-foreground: 0 0% 100%;
     --overlay: 230 13% 9% / 0.9;

@@ -7,14 +7,10 @@ type OtherCategoryType = {
   type?: 'other';
 };
 
-type InputCategoryType = {
-  type?: 'input';
-};
-
 type RegularCategoryType = {
-  type?: 'regular';
+  type?: 'regular' | 'input';
   title: string;
 };
 
 export type CategoryType = BaseCategoryType &
-  (OtherCategoryType | InputCategoryType | RegularCategoryType);
+  (OtherCategoryType | RegularCategoryType);

@@ -11,6 +11,7 @@ import { CategoryType } from '@/types/category';
 type CategoriesProps = {
   categories: CategoryType[];
   handleReorder: (categories: CategoryType[]) => void;
+  handleTitleChange: (id: string, title: string) => void;
   switchCategory: (id: string) => void;
   deleteCategory: (id: string) => void;
 };
@@ -18,6 +19,7 @@ type CategoriesProps = {
 const Categories: FC<CategoriesProps> = ({
   categories,
   handleReorder,
+  handleTitleChange,
   switchCategory,
   deleteCategory,
 }) => {
@@ -31,6 +33,7 @@ const Categories: FC<CategoriesProps> = ({
         <Category
           key={category.id}
           category={category}
+          handleTitleChange={handleTitleChange}
           switchCategory={switchCategory}
           deleteCategory={deleteCategory}
         />

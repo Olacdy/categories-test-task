@@ -25,6 +25,8 @@ module.exports = {
       colors: {
         border: 'hsl(var(--border))',
         'header-border': 'hsl(var(--header-border))',
+        'apply-changes': 'hsl(var(--apply-changes))',
+        'cancel-btn-border': 'hsl(var(--cancel-btn-border))',
         'category-bg': 'hsl(var(--category-bg))',
         'category-border': 'hsl(var(--category-border))',
         'category-title-muted': 'hsl(var(--category-title-muted))',

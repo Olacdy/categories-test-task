@@ -1,6 +1,8 @@
-import { cn } from '@/lib/utils';
-import { DragControls } from 'framer-motion';
 import { type LucideIcon, type LucideProps } from 'lucide-react';
+
+import { DragControls } from 'framer-motion';
+
+import { cn } from '@/lib/utils';
 
 export type Icon = LucideIcon;
 

@@ -2,8 +2,6 @@ import type { Metadata } from 'next';
 
 import { Toaster } from 'sonner';
 
-import { isMobile } from 'react-device-detect';
-
 import Favicon from '../../public/favicon.ico';
 
 import Header from '@/components/header';
@@ -28,10 +26,7 @@ export default function RootLayout({
           <Header />
           {children}
         </main>
-        <Toaster
-          richColors
-          position={isMobile ? 'top-center' : 'bottom-right'}
-        />
+        <Toaster richColors position='top-center' />
       </body>
     </html>
   );

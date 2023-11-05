@@ -1,6 +1,6 @@
 'use client';
 
-import { FC } from 'react';
+import { ChangeEvent, FC } from 'react';
 
 import { Reorder, useDragControls } from 'framer-motion';
 
@@ -8,25 +8,33 @@ import { Input } from '@/components/ui/input';
 
 import { Icons } from '@/components/icons';
 
+import CategorySwitch from '@/components/category-switch';
 import DeleteCategoryDialog from '@/components/delete-category-dialog';
 
 import { cn } from '@/lib/utils';
 
-import CategorySwitch from '@/components/category-switch';
 import { CategoryType } from '@/types/category';
 
 type CategoryProps = {
   category: CategoryType;
+  handleTitleChange: (id: string, title: string) => void;
   switchCategory: (id: string) => void;
   deleteCategory: (id: string) => void;
 };
 
 const Category: FC<CategoryProps> = ({
   category,
+  handleTitleChange,
   switchCategory,
   deleteCategory,
 }) => {
   const dragControls = useDragControls();
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const title = e.target.value;
+
+    handleTitleChange(category.id, title);
+  };
 
   return (
     <Reorder.Item
@@ -44,6 +52,8 @@ const Category: FC<CategoryProps> = ({
         </p>
       ) : (
         <Input
+          value={category.title}
+          onChange={(e) => handleInputChange(e)}
           placeholder='Enter Category Name'
           className='border-0 bg-transparent px-0 placeholder:text-category-title-muted focus-visible:ring-0 focus-visible:ring-offset-0'
         />

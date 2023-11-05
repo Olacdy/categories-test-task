@@ -1,48 +1,67 @@
 'use client';
 
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
+import { toast } from 'sonner';
+
+import ApplyChanges from '@/components/apply-changes';
 import Categories from '@/components/categories';
 import CreateCategoryButton from '@/components/create-category-button';
+
+import useCategoriesStore from '@/hooks/useCategoriesStore';
 
 import { generateId } from '@/lib/utils';
 
 import { CategoryType } from '@/types/category';
 
-type PageProps = {};
-
 const otherCategory: CategoryType = { id: 'other', type: 'other', isOn: true };
 
-const Page: FC<PageProps> = ({}) => {
-  const [categories, setCategories] = useState<CategoryType[]>([
-    { id: generateId(), type: 'regular', title: 'Test', isOn: false },
-    otherCategory,
-  ]);
+const Page: FC = () => {
+  const categoriesStore = useCategoriesStore();
 
-  const switchCategory = (id: string) => {
-    setCategories((prev) =>
-      prev.map((category) =>
-        category.id === id ? { ...category, isOn: !category.isOn } : category
-      )
-    );
-  };
+  const [categories, setCategories] = useState<CategoryType[]>([]);
+  const [changesMade, setChangesMade] = useState(false);
 
-  const deleteCategory = (id: string) => {
-    setCategories((prev) => prev.filter((category) => category.id !== id));
+  useEffect(() => {
+    setCategories(categoriesStore.categories);
+  }, []);
+
+  const updateCategories = (newCategories: CategoryType[]) => {
+    setCategories(newCategories);
+    setChangesMade(true);
   };
 
   const handleReorder = (reorderedCategories: CategoryType[]) => {
-    setCategories([
+    updateCategories([
       ...reorderedCategories.filter((category) => category.id !== 'other'),
       otherCategory,
     ]);
   };
 
   const handleCreateCategoryClick = () => {
-    setCategories((prev) => [
-      { id: generateId(), type: 'input', isOn: false },
-      ...prev,
+    updateCategories([
+      { id: generateId(), title: '', type: 'input', isOn: false },
+      ...categories,
     ]);
+  };
+
+  const handleApplyChanges = () => {
+    const hasUnfilledTitles = categories.some(
+      (category) => category.type === 'input' && category.title === ''
+    );
+
+    if (hasUnfilledTitles) {
+      toast.error('All titles should be filled!');
+      return;
+    }
+
+    categoriesStore.setCategories(categories);
+    setChangesMade(false);
+  };
+
+  const handleCancelChanges = () => {
+    setCategories(categoriesStore.categories);
+    setChangesMade(false);
   };
 
   return (
@@ -51,9 +70,32 @@ const Page: FC<PageProps> = ({}) => {
       <Categories
         categories={categories}
         handleReorder={handleReorder}
-        switchCategory={switchCategory}
-        deleteCategory={deleteCategory}
+        handleTitleChange={(id, title) =>
+          updateCategories(
+            categories.map((category) =>
+              category.id === id ? { ...category, title } : category
+            )
+          )
+        }
+        switchCategory={(id) =>
+          updateCategories(
+            categories.map((category) =>
+              category.id === id
+                ? { ...category, isOn: !category.isOn }
+                : category
+            )
+          )
+        }
+        deleteCategory={(id) =>
+          updateCategories(categories.filter((category) => category.id !== id))
+        }
       />
+      {changesMade && (
+        <ApplyChanges
+          handleApplyChanges={handleApplyChanges}
+          handleCancelChanges={handleCancelChanges}
+        />
+      )}
     </section>
   );
 };
