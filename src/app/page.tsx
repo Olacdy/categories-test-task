@@ -27,7 +27,7 @@ const Page: FC = () => {
 
   useEffect(() => {
     setCategories(categoriesStore.categories);
-  }, []);
+  }, [categoriesStore.categories]);
 
   const searchCategories = () => {
     return categories.filter((category) => {

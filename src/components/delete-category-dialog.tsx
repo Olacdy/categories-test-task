@@ -40,7 +40,7 @@ const DeleteCategoryDialog: FC<DeleteCategoryDialogProps> = ({
         <DialogHeader className='gap-6'>
           <DialogTitle>Delete the Category?</DialogTitle>
           <DialogDescription>
-            All templates in the category will be moved to the category "Other"
+            {`All templates in the category will be moved to the category "Other"`}
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className='w-full gap-4'>
