@@ -9,6 +9,7 @@ import Categories from '@/components/categories';
 import CreateCategoryButton from '@/components/create-category-button';
 
 import useCategoriesStore from '@/hooks/useCategoriesStore';
+import useSearch from '@/hooks/useSearch';
 
 import { generateId } from '@/lib/utils';
 
@@ -19,12 +20,24 @@ const otherCategory: CategoryType = { id: 'other', type: 'other', isOn: true };
 const Page: FC = () => {
   const categoriesStore = useCategoriesStore();
 
+  const { search } = useSearch();
+
   const [categories, setCategories] = useState<CategoryType[]>([]);
   const [changesMade, setChangesMade] = useState(false);
 
   useEffect(() => {
     setCategories(categoriesStore.categories);
   }, []);
+
+  const searchCategories = () => {
+    return categories.filter((category) => {
+      if (category.type === 'regular') {
+        return category.title.toLowerCase().includes(search);
+      }
+
+      return category;
+    });
+  };
 
   const updateCategories = (newCategories: CategoryType[]) => {
     setCategories(newCategories);
@@ -61,7 +74,11 @@ const Page: FC = () => {
       return;
     }
 
-    categoriesStore.setCategories(categories);
+    categoriesStore.setCategories(
+      categories.map((category) =>
+        category.type === 'input' ? { ...category, type: 'regular' } : category
+      )
+    );
     setChangesMade(false);
   };
 
@@ -74,7 +91,7 @@ const Page: FC = () => {
     <section className='flex w-full max-w-[638px] flex-1 flex-col items-center gap-[12px] px-5'>
       <CreateCategoryButton handleClick={handleCreateCategoryClick} />
       <Categories
-        categories={categories}
+        categories={searchCategories()}
         handleReorder={handleReorder}
         handleTitleChange={(id, title) =>
           updateCategories(

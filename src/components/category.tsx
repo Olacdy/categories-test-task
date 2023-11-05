@@ -53,7 +53,7 @@ const Category: FC<CategoryProps> = ({
       ) : (
         <Input
           value={category.title}
-          onChange={(e) => handleInputChange(e)}
+          onChange={handleInputChange}
           placeholder='Enter Category Name'
           className='border-0 bg-transparent px-0 placeholder:text-category-title-muted focus-visible:ring-0 focus-visible:ring-offset-0'
         />
