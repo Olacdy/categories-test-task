@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+const { fontFamily } = require('tailwindcss/defaultTheme');
+
 module.exports = {
   darkMode: ['class'],
   content: [
@@ -17,11 +20,20 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        satoshi: 'var(--font-satoshi)',
+        sans: ['Satoshi', ...fontFamily.sans],
       },
       colors: {
         border: 'hsl(var(--border))',
+        'header-border': 'hsl(var(--header-border))',
+        'apply-changes': 'hsl(var(--apply-changes))',
+        'cancel-btn-border': 'hsl(var(--cancel-btn-border))',
+        'category-bg': 'hsl(var(--category-bg))',
+        'category-border': 'hsl(var(--category-border))',
+        'category-title-muted': 'hsl(var(--category-title-muted))',
+        success: 'hsl(var(--success))',
+        overlay: 'hsl(var(--overlay))',
         input: 'hsl(var(--input))',
+        switch: 'hsl(var(--switch))',
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
