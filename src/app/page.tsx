@@ -2,6 +2,8 @@
 
 import { FC, useEffect, useState } from 'react';
 
+import { type DropResult } from 'react-beautiful-dnd';
+
 import { toast } from 'sonner';
 
 import ApplyChanges from '@/components/apply-changes';
@@ -11,7 +13,7 @@ import CreateCategoryButton from '@/components/create-category-button';
 import useCategoriesStore from '@/hooks/useCategoriesStore';
 import useSearch from '@/hooks/useSearch';
 
-import { generateId } from '@/lib/utils';
+import { generateId, reorder } from '@/lib/utils';
 
 import { CategoryType } from '@/types/category';
 
@@ -44,17 +46,22 @@ const Page: FC = () => {
     setChangesMade(true);
   };
 
-  const handleReorder = (reorderedCategories: CategoryType[]) => {
-    const lastElement = reorderedCategories.at(-1)!;
-
-    if (lastElement.type !== 'other') {
+  const onDragEnd = (result: DropResult) => {
+    if (!result.destination) {
       return;
     }
 
-    updateCategories([
-      ...reorderedCategories.filter((category) => category.id !== 'other'),
-      otherCategory,
-    ]);
+    if (result.destination.index === result.source.index) {
+      return;
+    }
+
+    const reorderedCategories = reorder(
+      categories,
+      result.source.index,
+      result.destination.index
+    );
+
+    updateCategories(reorderedCategories);
   };
 
   const handleCreateCategoryClick = () => {
@@ -90,29 +97,33 @@ const Page: FC = () => {
   return (
     <section className='flex w-full max-w-[638px] flex-1 flex-col items-center gap-[12px] px-5 pb-44'>
       <CreateCategoryButton handleClick={handleCreateCategoryClick} />
-      <Categories
-        categories={searchCategories()}
-        handleReorder={handleReorder}
-        handleTitleChange={(id, title) =>
-          updateCategories(
-            categories.map((category) =>
-              category.id === id ? { ...category, title } : category
+      {categories.length > 0 && (
+        <Categories
+          categories={searchCategories()}
+          onDragEnd={onDragEnd}
+          handleTitleChange={(id, title) =>
+            updateCategories(
+              categories.map((category) =>
+                category.id === id ? { ...category, title } : category
+              )
             )
-          )
-        }
-        switchCategory={(id) =>
-          updateCategories(
-            categories.map((category) =>
-              category.id === id
-                ? { ...category, isOn: !category.isOn }
-                : category
+          }
+          switchCategory={(id) =>
+            updateCategories(
+              categories.map((category) =>
+                category.id === id
+                  ? { ...category, isOn: !category.isOn }
+                  : category
+              )
             )
-          )
-        }
-        deleteCategory={(id) =>
-          updateCategories(categories.filter((category) => category.id !== id))
-        }
-      />
+          }
+          deleteCategory={(id) =>
+            updateCategories(
+              categories.filter((category) => category.id !== id)
+            )
+          }
+        />
+      )}
       {changesMade && (
         <ApplyChanges
           handleApplyChanges={handleApplyChanges}

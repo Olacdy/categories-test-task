@@ -5,7 +5,6 @@ import { Toaster } from 'sonner';
 import Favicon from '../../public/favicon.ico';
 
 import Header from '@/components/header';
-import Providers from '@/components/providers';
 
 import './globals.css';
 
@@ -25,7 +24,7 @@ export default function RootLayout({
       <body>
         <main className='flex h-screen max-h-screen flex-col items-center gap-10 antialiased'>
           <Header />
-          <Providers>{children}</Providers>
+          {children}
         </main>
         <Toaster richColors position='top-center' />
       </body>
