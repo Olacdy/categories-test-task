@@ -3,11 +3,13 @@ import { create } from 'zustand';
 type SearchStateType = {
   search: string;
   setSearch: (search: string) => void;
+  clearSearch: () => void;
 };
 
-const useSearch = create<SearchStateType>((set) => ({
+const useSearchStore = create<SearchStateType>((set) => ({
   search: '',
   setSearch: (search) => set(() => ({ search: search })),
+  clearSearch: () => set(() => ({ search: '' })),
 }));
 
-export default useSearch;
+export default useSearchStore;

@@ -1,16 +1,6 @@
-type BaseCategoryType = {
+export type CategoryType = {
   id: string;
-  isOn: boolean;
-};
-
-type OtherCategoryType = {
-  type?: 'other';
-};
-
-type RegularCategoryType = {
-  type?: 'regular' | 'input';
   title: string;
+  isOn: boolean;
+  type: 'other' | 'regular' | 'input';
 };
-
-export type CategoryType = BaseCategoryType &
-  (OtherCategoryType | RegularCategoryType);

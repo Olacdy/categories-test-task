@@ -41,10 +41,11 @@ const Categories: FC<CategoriesProps> = ({
                   <Category
                     key={category.id}
                     index={index}
+                    type={category.type}
                     category={category}
-                    handleTitleChange={handleTitleChange}
                     switchCategory={switchCategory}
                     deleteCategory={deleteCategory}
+                    handleTitleChange={handleTitleChange}
                   />
                 ))}
                 {provided.placeholder}
@@ -54,12 +55,10 @@ const Categories: FC<CategoriesProps> = ({
         </DragDropContext>
       )}
       <Category
+        type='other'
         key={otherCategory.id}
-        index={categories.length}
         category={otherCategory}
-        handleTitleChange={handleTitleChange}
         switchCategory={switchCategory}
-        deleteCategory={deleteCategory}
       />
     </>
   );
