@@ -2,19 +2,54 @@
 
 import { FC } from 'react';
 
+import { toast } from 'sonner';
+
 import { Button } from '@/components/ui/button';
 
 import { Icons } from '@/components/icons';
 
+import useCategoriesStore from '@/hooks/useCategoriesStore';
+import useFormsStore from '@/hooks/useFormsStore';
+import { CategoryType } from '@/types/category';
+
 type ApplyChangesProps = {
-  handleApplyChanges: () => void;
+  categories: CategoryType[];
+  resetChanges: () => void;
   handleCancelChanges: () => void;
 };
 
 const ApplyChanges: FC<ApplyChangesProps> = ({
-  handleApplyChanges,
+  categories,
+  resetChanges,
   handleCancelChanges,
 }) => {
+  const setCategories = useCategoriesStore((state) => state.setCategories);
+  const formsStore = useFormsStore();
+
+  const handleApplyChanges = () => {
+    const hasUnfilledTitles = categories.some(
+      (category) => category.type === 'input' && category.title === ''
+    );
+
+    for (const form of formsStore.forms) {
+      form.trigger('title');
+    }
+
+    if (hasUnfilledTitles) {
+      toast.error('All titles should be filled!');
+      return;
+    }
+
+    setCategories(
+      categories.map((category) =>
+        category.type === 'input' ? { ...category, type: 'regular' } : category
+      )
+    );
+
+    resetChanges();
+    formsStore.clearForms();
+  };
+
   return (
     <div className='fixed bottom-0 left-0 flex h-[104px] w-full justify-center bg-apply-changes'>
       <div className='flex w-full max-w-[1298px] flex-1 items-center justify-center gap-[26px] px-5'>

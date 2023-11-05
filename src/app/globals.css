@@ -92,4 +92,8 @@
     font-weight: 700;
     src: url(/categories-test-task/fonts/Satoshi-Bold.ttf);
   }
+
+  .category-item {
+    @apply flex h-[50px] w-full items-center justify-between gap-5 rounded-sm border-2 border-category-border bg-category-bg px-5;
+  }
 }

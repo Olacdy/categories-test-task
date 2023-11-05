@@ -4,25 +4,21 @@ import { FC, useEffect, useState } from 'react';
 
 import { type DropResult } from 'react-beautiful-dnd';
 
-import { toast } from 'sonner';
-
 import ApplyChanges from '@/components/apply-changes';
 import Categories from '@/components/categories';
 import CreateCategoryButton from '@/components/create-category-button';
 
 import useCategoriesStore from '@/hooks/useCategoriesStore';
-import useSearch from '@/hooks/useSearch';
+import useSearchStore from '@/hooks/useSearchStore';
 
 import { generateId, reorder } from '@/lib/utils';
 
 import { CategoryType } from '@/types/category';
 
-const otherCategory: CategoryType = { id: 'other', type: 'other', isOn: true };
-
 const Page: FC = () => {
   const categoriesStore = useCategoriesStore();
 
-  const { search } = useSearch();
+  const { search } = useSearchStore();
 
   const [categories, setCategories] = useState<CategoryType[]>([]);
   const [changesMade, setChangesMade] = useState(false);
@@ -30,6 +26,10 @@ const Page: FC = () => {
   useEffect(() => {
     setCategories(categoriesStore.categories);
   }, [categoriesStore.categories]);
+
+  const resetChanges = () => {
+    setChangesMade(false);
+  };
 
   const searchCategories = () => {
     return categories.filter((category) => {
@@ -71,27 +71,9 @@ const Page: FC = () => {
     ]);
   };
 
-  const handleApplyChanges = () => {
-    const hasUnfilledTitles = categories.some(
-      (category) => category.type === 'input' && category.title === ''
-    );
-
-    if (hasUnfilledTitles) {
-      toast.error('All titles should be filled!');
-      return;
-    }
-
-    categoriesStore.setCategories(
-      categories.map((category) =>
-        category.type === 'input' ? { ...category, type: 'regular' } : category
-      )
-    );
-    setChangesMade(false);
-  };
-
   const handleCancelChanges = () => {
     setCategories(categoriesStore.categories);
-    setChangesMade(false);
+    resetChanges();
   };
 
   return (
@@ -126,7 +108,8 @@ const Page: FC = () => {
       )}
       {changesMade && (
         <ApplyChanges
-          handleApplyChanges={handleApplyChanges}
+          categories={categories}
+          resetChanges={resetChanges}
           handleCancelChanges={handleCancelChanges}
         />
       )}

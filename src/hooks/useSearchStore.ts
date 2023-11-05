@@ -5,9 +5,9 @@ type SearchStateType = {
   setSearch: (search: string) => void;
 };
 
-const useSearch = create<SearchStateType>((set) => ({
+const useSearchStore = create<SearchStateType>((set) => ({
   search: '',
   setSearch: (search) => set(() => ({ search: search })),
 }));
 
-export default useSearch;
+export default useSearchStore;

@@ -7,13 +7,13 @@ import { Label } from '@/components/ui/label';
 
 import { Icons } from '@/components/icons';
 
-import useSearch from '@/hooks/useSearch';
+import useSearchStore from '@/hooks/useSearchStore';
 import { cn } from '@/lib/utils';
 
 type SearchFieldProps = {} & HTMLAttributes<HTMLInputElement>;
 
 const SearchField: FC<SearchFieldProps> = ({ className, ...props }) => {
-  const { search, setSearch } = useSearch((state) => ({ ...state }));
+  const { search, setSearch } = useSearchStore((state) => ({ ...state }));
 
   const handleSearchInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const text = e.target.value;
